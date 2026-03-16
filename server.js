@@ -107,7 +107,7 @@ app.get("/tools/latency", async (req, res) => {
       max_ms: maxVal !== null ? parseFloat(maxVal.toFixed(1)) : null,
       unit: "milliseconds",
       description: avgVal !== null
-        ? `Search latency: avg=${avgVal.toFixed(0)}ms, max=${maxVal?.toFixed(0)}ms`
+        ? `Search latency: avg=${avgVal ? avgVal.toFixed(0) + "ms" : "N/A"}, max=${maxVal ? maxVal.toFixed(0) + "ms" : "N/A"}`
         : "No latency data available — no recent search traffic",
       status: maxVal === null ? "unknown" : maxVal < 500 ? "healthy" : maxVal < 1500 ? "warning" : "critical",
     });
